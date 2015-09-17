@@ -2,7 +2,7 @@ module DesignerNews
   class Stories
     include HTTParty
 
-    base_uri 'https://api-news.layervault.com/api/v1'
+    base_uri 'http://www.designernews.co/api/v2'
     default_params :client_id => ENV['DESIGNER_NEWS_CLIENT_ID']
     format :json
 
