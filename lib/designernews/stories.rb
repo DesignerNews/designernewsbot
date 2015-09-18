@@ -3,11 +3,11 @@ module DesignerNews
     include HTTParty
 
     base_uri 'http://www.designernews.co/api/v2'
-    default_params :client_id => ENV['DESIGNER_NEWS_CLIENT_ID']
+    default_params :client_id => ENV['DESIGNER_NEWS_CLIENT_ID'], :sort => '-created_at'
     format :json
 
     def self.recent
-      stories = get('/stories/recent', :stories)
+      stories = get('/stories', :stories)
       stories.map { |story| Story.new(story) }
     end
 
