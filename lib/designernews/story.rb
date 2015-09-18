@@ -10,9 +10,10 @@ module DesignerNews
       end
     end
 
-    def new?
+    def posted_in_last_ten?
+      # Was the story posted in the last 10 minutes (our scheduled interval time)?
       created_at = DateTime.parse(@created_at).new_offset('-7').to_time
-      created_at > Timeline.most_recent.created_at
+      created_at > Time.now - (10 * 60)
     end
 
     def url
