@@ -23,5 +23,9 @@ module DesignerNews
         badge.sub('_', '').prepend('#')
       end
     end
+
+    def url
+      "https://www.designernews.co/stories/#{id}-#{title.downcase.gsub(/[^a-z0-9 ]/i, '').gsub(' ', '-')}?utm_source=twitter&utm_medium=social&utm_campaign=designernewsbot"
+    end
   end
 end
