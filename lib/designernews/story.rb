@@ -2,11 +2,13 @@ module DesignerNews
   class Story
     include StoryFormatter
 
-    attr_reader :id, :title, :badge
+    attr_reader :id, :title, :badge, :twitter_handles
 
     def initialize(hash)
-      %w(id title badge created_at).each do |key|
-        instance_variable_set("@#{key}", hash.fetch(key))
+      %w(id title badge twitter_handles created_at).each do |key|
+        if hash.include?(key)
+          instance_variable_set("@#{key}", hash.fetch(key))
+        end
       end
     end
 
