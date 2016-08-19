@@ -9,7 +9,8 @@ module DesignerNews
     end
 
     def truncated_title
-      base_tweet = [featured_emoji, title, '@', organization_name, 'in', location, '#job', remote_emoji, ' '].compact.join(' ')
+      tweet_location = (location =~ /remote|anywhere/i) ? nil : "in #{location}"
+      base_tweet = [featured_emoji, title, '@', organization_name, tweet_location, '#job', remote_emoji, ' '].compact.join(' ')
       full_tweet_length = base_tweet.length + SHORT_URL_HTTPS_LENGTH
 
       if full_tweet_length > TWEET_LENGTH
