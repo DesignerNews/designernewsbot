@@ -4,17 +4,11 @@ module DesignerNews
     SHORT_URL_HTTPS_LENGTH = 23
     WHITESPACE_LENGTH = 3
 
-    @@SKIP_MENTIONS = false
-
     def tweet
       [body, hashtag, mentions, url].compact.join(' ')
     end
 
     def body
-      if TWEET_LENGTH - max_length < 50
-        @@SKIP_MENTIONS = true
-      end
-
       title.strip.truncate(max_length)
     end
 
@@ -32,7 +26,7 @@ module DesignerNews
     end
 
     def mentions
-      if twitter_handles.any? && !@@SKIP_MENTIONS
+      if twitter_handles.any?
         handles = twitter_handles.map { |word| "@#{word}" }.join(' ')
         "(cc #{handles})"
       end
